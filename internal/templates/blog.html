@@ -1,0 +1,13 @@
+{{ define "blog" }}
+{{ template "layout" . }}
+<h1>All Blog Posts</h1>
+<ul class="blog-list">
+  {{ range .Posts }}
+    <li>
+      <a href="/blog/{{ .Slug }}">{{ .Title }}</a>
+      <span class="meta">{{ .Date.Format "Jan 2, 2006" }} by {{ .Author }}</span>
+      <p>{{ .Description }}</p>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

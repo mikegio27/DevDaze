@@ -1,0 +1,18 @@
+{{ define "post" }}
+{{ template "layout" . }}
+{{ end }}
+
+{{ define "content" }}
+<article class="blog-post">
+  <h1>{{ .Post.Title }}</h1>
+  <p class="meta">
+    <span>{{ .Post.Date.Format "Jan 2, 2006" }}</span> &middot; <span>{{ .Post.Author }}</span>
+  </p>
+  <div class="tags">
+    {{ range .Post.Tags }}<span class="tag">{{ . }}</span> {{ end }}
+  </div>
+  <div class="post-content">
+    {{ raw .Post.HTMLContent }}
+  </div>
+</article>
+{{ end }}

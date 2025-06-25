@@ -1,0 +1,39 @@
+{{ define "index" }}
+{{ template "layout" . }}
+{{ end }}
+
+{{ define "content" }}
+<h1>Welcome to {{.Title}}</h1>
+
+{{ if .Posts }}
+    {{ if gt (len .Posts) 0 }}
+        <ul class="post-list">
+            {{ range .Posts }}
+            <li class="post-item">
+                <h2 class="post-title">
+                    <a href="/blog/{{.Slug}}">{{.Title}}</a>
+                </h2>
+                <div class="post-meta">
+                    By {{.Author}} on {{.Date.Format "January 2, 2006"}}
+                </div>
+                <div class="post-description">
+                    {{.Description}}
+                </div>
+                {{ if .Tags }}
+                <div class="tags">
+                    {{ range .Tags }}
+                        <span class="tag">{{.}}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </li>
+            {{ end }}
+        </ul>
+    {{ else }}
+        <p>No blog posts found. Create some markdown files in the content directory!</p>
+    {{ end }}
+{{ else }}
+    <p>No blog posts found. Create some markdown files in the content directory!</p>
+{{ end }}
+{{ end }}
+
